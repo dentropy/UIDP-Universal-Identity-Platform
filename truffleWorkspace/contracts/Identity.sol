@@ -11,7 +11,9 @@ contract Identity {
     function selectCurrentPGPKey () public {}
     function addTokenMetaData () public {}
     function appendTokenMetadata () public {}
-    function issueToken () public {}
+    function acceptToken () public {}
     function revokeToken () public {}
+    function issueToken () public {}
+    function revokeIssuedToken () public {}
 
 }
