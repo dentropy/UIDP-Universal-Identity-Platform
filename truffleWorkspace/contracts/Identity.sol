@@ -18,21 +18,23 @@ contract Identity {
         string ipfsPGP;
     }
     */
-    mapping (bytes32 => string) PGPKey;
-    mapping (bytes32 => bool) validIdentityKeys;
+    mapping (bytes32 => string) public PGPKey;
+    mapping (bytes32 => bool) public validIdentityKeys;
     mapping (bytes32 => identityAddress[]) public identities;
     //mapping (bytes32 => userInfoStruct) public userInfo; 
 
     //User, Issuer, Certification ID
-    mapping (bytes32 => mapping(bytes32 => mapping(bytes16 => identityTokenStruct))) identityToken;
+    mapping (bytes32 => mapping(bytes32 => mapping(bytes16 => identityTokenStruct))) public identityToken;
     //Functions
 
+
+    mapping (bytes32 => mapping(bytes16 => string)) public tokenMetadata;
 
     //Constructor
     //Curently I have nothing for it to do
     //This is a decentralized identity platform, so I have no authory anyways
-    address creator;
-    function Identity () public {
+    address public creator;
+    constructor () public {
         creator = msg.sender;
     }
 
@@ -86,11 +88,10 @@ contract Identity {
         }
 
     }
-    function addTokenMetaData () public {
-
-    }
-    function appendTokenMetadata () public {
-
+    function addTokenMetaData (bytes32 _userID, uint16 _position, bytes16 _certID, string _metaData) public {
+        if(identities[_userID][_position].accountAddress == msg.sender && identities[_userID][_position].valid == true){
+            tokenMetadata[_userID][_certID] = _metaData;
+        }
     }
     /*
     function deletePublicKey () public {
