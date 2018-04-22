@@ -31,6 +31,7 @@ contract Identity {
     }
     //mapping (bytes32 => userInfoStruct) public userInfo; 
     */
+    mapping (address => bytes32[]) public publicKeyToIdentity;
     mapping (bytes32 => string) public email;
     mapping (bytes32 => string) public PGPKey;
     mapping (bytes32 => bool) public validIdentityKeys;
@@ -55,6 +56,7 @@ contract Identity {
         if(validIdentityKeys[_identityKey] == false){
             validIdentityKeys[_identityKey] = true;
             identities[_identityKey].push(identityAddress(msg.sender, true));
+            publicKeyToIdentity[msg.sender].push(_identityKey);
             return(true);
         }
         else{
@@ -64,6 +66,7 @@ contract Identity {
     function addPublicKey (bytes32 _userID, uint16 _position, address newPublicKey) public returns(bool) {
         if(identities[_userID][_position].accountAddress == msg.sender && identities[_userID][_position].valid == true){
             identities[_userID].push(identityAddress(newPublicKey, true));
+            publicKeyToIdentity[msg.sender].push(_userID);
             return(true);
         }
         else {
