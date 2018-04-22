@@ -7,8 +7,21 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>Universal Identity Platform</title>
-        <script src="testmetamask.js"></script>
-        <script src="ImportSmartContracts"></script>
+        <script src="/javascript/jquery.min.js"></script>
+        <script src="/javascript/ImportSmartContract.js"></script>
+        <script src="/javascript/testmetamask.js"></script>
+        <!--<script src="/javascript/GetIdentitySmartContract.js"></script>-->
+        <script>
+                GetSmartContract("/abi/Identity.json", "Identity");
+                function GetCreator() {
+                    SmartContracts["Identity"].call.creator(function (err, result) {
+                        console.log(result)
+                    });
+                }
+                function what() {
+                    console.log("GetCreator();")
+                }
+        </script>
         <style>
             body{background-color: rgb(255, 255, 255);}
             h1{height:1px;}
