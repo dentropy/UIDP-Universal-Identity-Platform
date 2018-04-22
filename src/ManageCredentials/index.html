@@ -1,43 +1,57 @@
 <!Doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <script src="/javascript/jquery.min.js"></script>
-        <script src="/javascript/ImportSmartContract.js"></script>
-        <script src="/javascript/testmetamask.js"></script>
-        <!--<script src="/javascript/GetIdentitySmartContract.js"></script>-->
-        <script>
-                GetSmartContract("/abi/Identity.json", "Identity");
-                function GetCreator() {
-                    SmartContracts["Identity"].call.creator(function (err, result) {
-                        console.log(result)
-                    });
-                }
-                function what() {
-                    console.log("GetCreator();")
-                }
-                function displayIDs(){
-                    SmartContracts["Identity"].call.publicKeyToIdentity(web3.eth.accounts[0], 0, function (err, result) {
-                        console.log(result);
-                        document.body.innerHTML += '<p>Account at position 0 = '+result+'</p><br>';
-                    });
-                }
-        </script>
-        <title>Manage Credentials</title>
 
-        <style></style>
-        
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="/javascript/jquery.min.js"></script>
+    <script src="/javascript/ImportSmartContract.js"></script>
+    <script src="/javascript/testmetamask.js"></script>
+    <!--<script src="/javascript/GetIdentitySmartContract.js"></script>-->
+    <script>
+        GetSmartContract("/abi/Identity.json", "Identity");
+        function GetCreator() {
+            SmartContracts["Identity"].call.creator(function (err, result) {
+                console.log(result)
+            });
+        }
+        function what() {
+            console.log("GetCreator();")
+        }
+        function displayIDs() {
+            SmartContracts["Identity"].call.publicKeyToIdentity(web3.eth.accounts[0], 0, function (err, result) {
+                console.log(result);
+                document.body.innerHTML += '<p>Account at position 0 = ' + result + '</p><br>';
+                SmartContracts["Identity"].call.email(result, function (err, result) {
+                    console.log(result);
+                    if (result = undefined) {
+                        document.body.innerHTML += '<p>You can register an email <a href="/AttachEmailToID">here</a></p><br>';
+                    }
+                    else {
+                        document.body.innerHTML += '<p>Your registered email is ' + result + '</p><br>';
+                    }
+                });
+            });
+        }
+    </script>
+    <title>Manage Credentials</title>
+
+    <style></style>
 
 
-    </head>
-    <body class="manage-credentials" style="text-align: center;">
-        <form class="create-id">
-            <img class="mb-4">
-            <br><br><br>
-            <button type="button" onclick="javascript:displayIDs()">Click here to see your credentials</button>
-        </form>
-    </body>
+
+</head>
+
+<body class="manage-credentials" style="text-align: center;">
+    <form class="create-id">
+        <img class="mb-4">
+        <br>
+        <br>
+        <br>
+        <button type="button" onclick="javascript:displayIDs()">Click here to see your credentials</button>
+    </form>
+</body>
+
 </html>
