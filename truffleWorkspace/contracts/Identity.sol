@@ -47,7 +47,7 @@ contract Identity {
         //Curently I have nothing for it to do
         //This is a decentralized identity platform, so the creator has no authory anyways
     address public creator;
-    constructor() public {
+    function Identity() public {
         creator = msg.sender;
     }
 
