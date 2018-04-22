@@ -18,6 +18,7 @@ contract Identity {
         string ipfsPGP;
     }
     */
+    mapping (bytes32 => string) public email;
     mapping (bytes32 => string) public PGPKey;
     mapping (bytes32 => bool) public validIdentityKeys;
     mapping (bytes32 => identityAddress[]) public identities;
@@ -91,6 +92,11 @@ contract Identity {
     function addTokenMetaData (bytes32 _userID, uint16 _position, bytes16 _certID, string _metaData) public {
         if(identities[_userID][_position].accountAddress == msg.sender && identities[_userID][_position].valid == true){
             tokenMetadata[_userID][_certID] = _metaData;
+        }
+    }
+        function setEmail (bytes32 _userID, uint16 _position, string _email) public {
+        if(identities[_userID][_position].accountAddress == msg.sender && identities[_userID][_position].valid == true){
+            email[_userID] = _email;
         }
     }
     /*
