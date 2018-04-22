@@ -6,7 +6,46 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>Attach Email To ID Page</title>
-
+        <script src="/javascript/jquery.min.js"></script>
+        <script src="/javascript/ImportSmartContract.js"></script>
+        <script src="/javascript/testmetamask.js"></script>
+        <!--<script src="/javascript/GetIdentitySmartContract.js"></script>-->
+        <script>
+            GetSmartContract("/abi/Identity.json", "Identity");
+            function GetCreator() {
+                SmartContracts["Identity"].call.creator(function (err, result) {
+                    console.log(result)
+                });
+            }
+            function what() {
+                console.log("GetCreator();")
+            }
+            function setEmail() {
+                var tmpInputCredentailsID = $("#InputCredentailsID").val();
+                var tmpBytes16Key = $("#Bytes16Key").val();
+                var tmpDataHash = $("#DataHash").val();
+                var tmpEncryptedIPFS = $("#EncryptedIPFS").val();
+                var tmpUserID = $("#UserID").val();
+                console.log(tmpEmail);
+                SmartContracts["Identity"].call.issueToken(tmpUserID, 0, tmpInputCredentailsID, tmpDataHash, tmpEncryptedIPFS, 1, tmpInputCredentailsID, function (err, result) {
+                    console.log(result);
+                    document.body.innerHTML += '<p>Congradulations you gave someone credentials using your identity</p><br>';
+                    document.body.innerHTML += '<p>You used the ID with key ' + tmpInputtmpUserIDCredentailsID + '</p><br>';
+                    document.body.innerHTML += '<p>You verified the ID ' + tmpInputCredentailsID + '</p><br>';
+                    document.body.innerHTML += '<p>Hash of verified data was ' + tmpDataHash + '</p><br>';
+                    document.body.innerHTML += '<p>Encrypted IFPS is ' + tmpEncryptedIPFS + '</p><br>';
+                    document.body.innerHTML += '<p>The transaction hash was ' + result + '</p><br>';
+                    document.body.innerHTML += '<a href="/ManageCredentials">CLICK HERE</a><br>';
+                });
+            }
+        /*
+        function issueToken (bytes32 _userID, uint16 _position, bytes32 _issueIDTo, string _verifiedHASH, string _encryptedIPFSLink, uint16 _validity,bytes16 tokenID) public returns (bool) {
+            if(identities[_userID][_position].accountAddress == msg.sender && identities[_userID][_position].valid == true){
+                identityToken[_issueIDTo][_userID][tokenID] = identityTokenStruct(_verifiedHASH, _encryptedIPFSLink, _validity, false);
+            }
+        }
+        */
+        </script>
         <style></style>
 
 
