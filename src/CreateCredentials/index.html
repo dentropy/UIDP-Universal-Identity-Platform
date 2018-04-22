@@ -1,49 +1,73 @@
 <!Doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <script src="/javascript/jquery.min.js"></script>
-        <script src="/javascript/ImportSmartContract.js"></script>
-        <script src="/javascript/testmetamask.js"></script>
-        <!--<script src="/javascript/GetIdentitySmartContract.js"></script>-->
-        <script>
-                GetSmartContract("/abi/Identity.json", "Identity");
-                function GetCreator() {
-                    SmartContracts["Identity"].call.creator(function (err, result) {
-                        console.log(result)
-                    });
-                }
-                function what() {
-                    console.log("GetCreator();")
-                }
-        </script>
-        <title>Create Credentials ID Page</title>
 
-        <style></style>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="/javascript/jquery.min.js"></script>
+    <script src="/javascript/ImportSmartContract.js"></script>
+    <script src="/javascript/testmetamask.js"></script>
+    <!--<script src="/javascript/GetIdentitySmartContract.js"></script>-->
+    <script>
+        GetSmartContract("/abi/Identity.json", "Identity");
+        function GetCreator() {
+            SmartContracts["Identity"].call.creator(function (err, result) {
+                console.log(result)
+            });
+        }
+        function what() {
+            console.log("GetCreator();")
+        }
+        function setEmail() {
+            var tmpInputCredentailsID = $("#InputCredentailsID").val();
+            var tmpBytes16Key = $("#Bytes16Key").val();
+            var tmpDataHash = $("#DataHash").val();
+            var tmpEncryptedIPFS = $("#EncryptedIPFS").val();
+            var tmpUserID = $("#UserID").val();
+            console.log(tmpEmail);
+            SmartContracts["Identity"].call.issueToken(tmpUserID, 0, tmpInputCredentailsID, tmpDataHash, tmpEncryptedIPFS, 1, tmpInputCredentailsID, function (err, result) {
+                console.log(result);
+                document.body.innerHTML += '<p>Congradulations you registered an email with your ID on the blockchain</p><br>';
+                document.body.innerHTML += '<p>The email you input was ' + tmpEmail + '</p><br>';
+                document.body.innerHTML += '<p>The transaction hash is ' + result + '</p><br>';
+                document.body.innerHTML += '<a href="/ManageCredentials">CLICK HERE</a><br>';
+            });
+        }
+    /*
+    function issueToken (bytes32 _userID, uint16 _position, bytes32 _issueIDTo, string _verifiedHASH, string _encryptedIPFSLink, uint16 _validity,bytes16 tokenID) public returns (bool) {
+        if(identities[_userID][_position].accountAddress == msg.sender && identities[_userID][_position].valid == true){
+            identityToken[_issueIDTo][_userID][tokenID] = identityTokenStruct(_verifiedHASH, _encryptedIPFSLink, _validity, false);
+        }
+    }
+    */
+    </script>
+    <title>Create Credentials ID Page</title>
+
+    <style></style>
 
 
-    </head>
-    <body class="text-center" style="text-align: center;">
-        <form class="create-credentials">
-            <img class="mb-4">
-            <h1>Create Credentials ID</h1>
-            Credentials ID :
-            <input type="text" id="InputCredentailsID" class="form-control" placeholder="Credentials ID" required>
-            <br>
-             Bytes16 Key :
-            <input type="text" id="Input" class="form-control" placeholder="Bytes16 Key" required>
-            <br>
-            Data Hash :
-            <input type="text" id="Input" class="form-control" placeholder="Data Hash" required>
-            <br>
-            Encrypted IPFS :
-            <input type="text" id="Input" class="form-control" placeholder="Encrypted IPFS" required>
-            <br>
-            <input type="button" id="Input" class="form-control" placeholder="Bytes16 Key" value="Send to Blockchain" required>
+</head>
 
-        </form>
-    </body>
+<body class="text-center" style="text-align: center;">
+    <form class="create-credentials">
+        <img class="mb-4">
+        <h1>Create Credentials ID</h1>
+        My User ID :
+        <input type="text" id="UserID" class="form-control" placeholder="Credentials ID" required>
+        Credentials ID :
+        <input type="text" id="InputCredentailsID" class="form-control" placeholder="Credentials ID" required>
+        <br> Bytes16 Key :
+        <input type="text" id="Bytes16Key" class="form-control" placeholder="Bytes16 Key" required>
+        <br> Data Hash :
+        <input type="text" id="DataHash" class="form-control" placeholder="Data Hash" required>
+        <br> Encrypted IPFS :
+        <input type="text" id="EncryptedIPFS" class="form-control" placeholder="Encrypted IPFS" required>
+        <br>
+        <input type="button" id="Input" class="form-control" placeholder="Bytes16 Key" value="Send to Blockchain" required>
+
+    </form>
+</body>
+
 </html>
