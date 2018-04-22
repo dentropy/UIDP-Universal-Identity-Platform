@@ -18,3 +18,8 @@ Using Solidity Ethereum and IPFS
         * Learn Bootstrap
     * Everyone
         * IPFS the things
+* Dependencies
+    * Nodejs
+        * npm install -g truffle
+        * npm install -g truffle-hdwallet-provider
+        * npm install express
