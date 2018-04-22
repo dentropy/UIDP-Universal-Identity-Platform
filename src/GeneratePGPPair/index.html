@@ -8,10 +8,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <script src="/javascript/jquery.min.js"></script>
-    <script src="/javascript/ImportSmartContract.js"></script>
+    <!-- <script src="/javascript/ImportSmartContract.js"></script> -->
+    <script src="/javascript/openpgp.min.js"></script>
+    <script src="/javascript/openpgp_interface.js"></script>
     <!--<script src="/javascript/GetIdentitySmartContract.js"></script>-->
     <script>
-        GetSmartContract("/abi/Identity.json", "Identity");
+        //GetSmartContract("/abi/Identity.json", "Identity");
         function GetCreator() {
             SmartContracts["Identity"].call.creator(function (err, result) {
                 console.log(result)
@@ -20,6 +22,10 @@
         function what() {
             console.log("GetCreator();")
         }
+
+        $("#gen-pgp").click( function(event) {
+          event.preventDefault();
+        });
     </script>
     <title>Generate PGP Pair</title>
 
@@ -31,8 +37,50 @@
     <form class="create-id">
         <img class="mb-4">
         <h1>Generate PGP Pair</h1>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Generate PGP Pair</button>
+        <input id="id"></input>
+        <input type="password" id="pwd"></input>
+        <button id="gen-pgp" class="btn btn-lg btn-primary btn-block">Generate PGP Pair</button>
     </form>
+
+    <div id="body"></div>
 </body>
+
+<script>
+    var publicKey
+    var privateKey
+    $("#gen-pgp").click( function(event) {
+      event.preventDefault();
+      var id = $("#id").val()
+      var pwd = $("#pwd").val()
+      identityGenerateKey(id, pwd).then(function(key){
+        publicKey = key.publicKeyArmored
+        privateKey = key.privateKeyArmored
+        console.log(key)
+        $("#body" ).append("<p>Public Key</p>")
+        $("#body" ).append("<textarea rows='15' cols='80' id='pubkey-text' readonly>"+ key.publicKeyArmored +"</textarea>")
+        $("#body" ).append("<br><button id='pubkey'>Copy Public Key to Clipboard</button>")
+        $("#pubkey").on('click', function (e) {
+            $("#pubkey-text").select();
+            var clip = new ClipboardEvent('copy');
+            document.execCommand('copy');
+        });
+        $("#body" ).append("<textarea style='margin-left: 2000px;' id='privkey-text'>"+ key.privateKeyArmored +"</textarea>")
+        $("#body" ).append("<p>Private Key</p>")
+        $("#body" ).append("<br><button id='privkey'>Copy Private Key to Clipboard</button>")
+        $("#body" ).append("<br><button id='disp-priv-key'>Display Private Key</button>")
+        $("#privkey").on('click', function (e) {
+            console.log("CHECK")
+            $("#privkey-text").select();
+            var clip = new ClipboardEvent('copy');
+            document.execCommand('copy');
+        });
+        $("#disp-priv-key").on('click', function (e) {
+            $("#body" ).append("<br>")
+            $("#body" ).append("<textarea rows='15' cols='80' id='priv-key-text-area' readonly>"+ key.privateKeyArmored +"</textarea>")
+        });
+      })
+
+    });
+</script>
 
 </html>
