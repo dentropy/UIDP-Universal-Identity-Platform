@@ -2,44 +2,55 @@ pragma solidity ^0.4.16;
 
 contract Identity {
     //Datastructures
+
+    /*This is a credential that can be sent to an Identity key
+        verifiedHASH is hash of a piece of data which is created by the issuer
+        encryptedIPFSLink is for when the file is encrypted with the users PGP key that is on the platform
+        The user can get the file which generates the verified hash and use that as ID which can be verified in this smart contact
+        validity is for the state of the token, it can be used to revoke the credential as well
+        ownerAccepts shows the owner agrees with what the credential repersents
+        */
     struct identityTokenStruct {
         string verifiedHASH;
         string encryptedIPFSLink;
         uint16 validity;
         bool ownerAccepts;
     }
+    /*
+    This struct is for adding and removing public keys that can control the identity
+    */
     struct identityAddress {
         address accountAddress;
         bool valid;
     }
     /*
+    //Not used in current implementation
     struct userInfoStruct {
         string rawPGPKey;
         string ipfsPGP;
     }
+    //mapping (bytes32 => userInfoStruct) public userInfo; 
     */
     mapping (bytes32 => string) public email;
     mapping (bytes32 => string) public PGPKey;
     mapping (bytes32 => bool) public validIdentityKeys;
     mapping (bytes32 => identityAddress[]) public identities;
-    //mapping (bytes32 => userInfoStruct) public userInfo; 
 
     //User, Issuer, Certification ID
     mapping (bytes32 => mapping(bytes32 => mapping(bytes16 => identityTokenStruct))) public identityToken;
-    //Functions
 
-
+    //This stuct maps to metadata or IPFS hash that explains what the token is about for people who do not know what the token is
     mapping (bytes32 => mapping(bytes16 => string)) public tokenMetadata;
 
     //Constructor
-    //Curently I have nothing for it to do
-    //This is a decentralized identity platform, so I have no authory anyways
+        //Curently I have nothing for it to do
+        //This is a decentralized identity platform, so the creator has no authory anyways
     address public creator;
     constructor () public {
         creator = msg.sender;
     }
 
-
+    
     function createIdentity (bytes32 _identityKey) public returns (bool) {
         if(validIdentityKeys[_identityKey] == false){
             validIdentityKeys[_identityKey] = true;
