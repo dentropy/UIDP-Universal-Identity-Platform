@@ -29,9 +29,12 @@
             console.log(tmpEmail);
             SmartContracts["Identity"].call.issueToken(tmpUserID, 0, tmpInputCredentailsID, tmpDataHash, tmpEncryptedIPFS, 1, tmpInputCredentailsID, function (err, result) {
                 console.log(result);
-                document.body.innerHTML += '<p>Congradulations you registered an email with your ID on the blockchain</p><br>';
-                document.body.innerHTML += '<p>The email you input was ' + tmpEmail + '</p><br>';
-                document.body.innerHTML += '<p>The transaction hash is ' + result + '</p><br>';
+                document.body.innerHTML += '<p>Congradulations you gave someone credentials using your identity</p><br>';
+                document.body.innerHTML += '<p>You used the ID with key ' + tmpInputtmpUserIDCredentailsID + '</p><br>';
+                document.body.innerHTML += '<p>You verified the ID ' + tmpInputCredentailsID + '</p><br>';
+                document.body.innerHTML += '<p>Hash of verified data was ' + tmpDataHash + '</p><br>';
+                document.body.innerHTML += '<p>Encrypted IFPS is ' + tmpEncryptedIPFS + '</p><br>';
+                document.body.innerHTML += '<p>The transaction hash was ' + result + '</p><br>';
                 document.body.innerHTML += '<a href="/ManageCredentials">CLICK HERE</a><br>';
             });
         }
