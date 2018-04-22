@@ -5,6 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
+        <script src="/javascript/jquery.min.js"></script>
+        <script src="/javascript/ImportSmartContract.js"></script>
+        <!--<script src="/javascript/GetIdentitySmartContract.js"></script>-->
+        <script>
+                GetSmartContract("/abi/Identity.json", "Identity");
+                function GetCreator() {
+                    SmartContracts["Identity"].call.creator(function (err, result) {
+                        console.log(result)
+                    });
+                }
+                function what() {
+                    console.log("GetCreator();")
+                }
+        </script>
         <title>Credential Marketplace</title>
 
         <style></style>
