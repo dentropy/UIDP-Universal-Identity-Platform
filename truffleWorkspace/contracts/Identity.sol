@@ -46,7 +46,7 @@ contract Identity {
         //Curently I have nothing for it to do
         //This is a decentralized identity platform, so the creator has no authory anyways
     address public creator;
-    constructor () public {
+    function Identity () public {
         creator = msg.sender;
     }
 
@@ -105,7 +105,8 @@ contract Identity {
             tokenMetadata[_userID][_certID] = _metaData;
         }
     }
-        function setEmail (bytes32 _userID, uint16 _position, string _email) public {
+
+    function setEmail (bytes32 _userID, uint16 _position, string _email) public {
         if(identities[_userID][_position].accountAddress == msg.sender && identities[_userID][_position].valid == true){
             email[_userID] = _email;
         }

@@ -12,15 +12,41 @@
     <script src="/javascript/testmetamask.js"></script>
     <!--<script src="/javascript/GetIdentitySmartContract.js"></script>-->
     <script>
-            GetSmartContract("/abi/Identity.json", "Identity");
-            function GetCreator() {
-                SmartContracts["Identity"].call.creator(function (err, result) {
-                    console.log(result)
-                });
-            }
-            function what() {
-                console.log("GetCreator();")
-            }
+        GetSmartContract("/abi/Identity.json", "Identity");
+        function GetCreator() {
+            SmartContracts["Identity"].call.creator(function (err, result) {
+                console.log(result)
+            });
+        }
+        function what() {
+            console.log("GetCreator();")
+        }
+
+        //Thanks be to the stack overflow gods
+            //https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+        function makeid() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for (var i = 0; i < 32; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text;
+        }
+
+        var users_unique_id;
+        function CreateIdentity(){
+            users_unique_id = makeid();
+            SmartContracts["Identity"].call.createIdentity(users_unique_id, function(err,result){
+                console.log(result);
+                document.body.innerHTML += '<p>Congradulations you registered an ID on the blockchain</p><br>';
+                document.body.innerHTML += '<p>Your unique ID is '+users_unique_id+'</p><br>';
+                document.body.innerHTML += '<p>The transaction hash is '+result+'</p><br>';
+                document.body.innerHTML += '<a href="/ManageCredentials">CLICK HERE</a><br>';
+                
+            })
+        }
+
     </script>
     <style>
     </style>
@@ -29,27 +55,16 @@
 
 </head>
 
-<body class="text-center">
+<body class="text-center" style="text-align: center;">
     <form class="create-id">
         <img class="mb-4">
-        <center>
-            <h1>Create ID</h1>
-        </center>
-        <center>
-            <h2>Your ID is: </h2>
-        </center>
-
-        <center>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">To Blockchain</button>
-        </center>
-
-
-        <center>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">To Your Account</button>
-        </center>
-
-
-
+        <h1>Create ID</h1>
+        <h2>Your ID is: </h2>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="javascript:CreateIdentity()">Create new ID</button>
+        <br>
+        <p>If you already have an ID please click
+            <a href="/">here</a> to learn how to add a public key to your ID</p>
+        <!--<button class="btn btn-lg btn-primary btn-block" type="submit">To Your Account</button>-->
     </form>
 
 </body>
