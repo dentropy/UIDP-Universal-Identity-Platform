@@ -1,40 +1,58 @@
 <!Doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <script src="/javascript/jquery.min.js"></script>
-        <script src="/javascript/ImportSmartContract.js"></script>
-        <script src="/javascript/testmetamask.js"></script>
-        <!--<script src="/javascript/GetIdentitySmartContract.js"></script>-->
-        <script>
-                GetSmartContract("/abi/Identity.json", "Identity");
-                function GetCreator() {
-                    SmartContracts["Identity"].call.creator(function (err, result) {
-                        console.log(result)
-                    });
-                }
-                function what() {
-                    console.log("GetCreator();")
-                }
-        </script>
-        <title>Attach Email To ID Page</title>
 
-        <style></style>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="/javascript/jquery.min.js"></script>
+    <script src="/javascript/ImportSmartContract.js"></script>
+    <script src="/javascript/testmetamask.js"></script>
+    <!--<script src="/javascript/GetIdentitySmartContract.js"></script>-->
+    <script>
+        GetSmartContract("/abi/Identity.json", "Identity");
+        function GetCreator() {
+            SmartContracts["Identity"].call.creator(function (err, result) {
+                console.log(result)
+            });
+        }
+        function what() {
+            console.log("GetCreator();")
+        }
+        function setEmail() {
+            var tmpEmail = $("#inputEmail").val();
+            var tmpID = $("#inputID").val();
+            console.log(tmpEmail);
+            SmartContracts["Identity"].call.setEmail(tmpID, 0, tmpEmail, function (err, result) {
+                console.log(result);
+                document.body.innerHTML += '<p>Congradulations you registered an email with your ID on the blockchain</p><br>';
+                document.body.innerHTML += '<p>The email you input was '+tmpEmail+'</p><br>';
+                document.body.innerHTML += '<p>The transaction hash is '+result+'</p><br>';
+                document.body.innerHTML += '<a href="/ManageCredentials">CLICK HERE</a><br>';
+            });
+        }
+    </script>
+    <title>Attach Email To ID Page</title>
+
+    <style></style>
 
 
-    </head>
-    <body class="text-center">
-        <form class="attach-email-to-id">
-            <img class="mb-4">
-            <center><h1>Attach Email To ID</h1></center>
-            
-            <center><input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus><center/>
-            <center><button class="btn btn-lg btn-primary btn-block" type="submit">Attach Email To ID</button></center>
-            
+</head>
 
-        </form>
-    </body>
+<body class="text-center" style="text-align: center;">
+    <form class="attach-email-to-id">
+        <img class="mb-4">
+        <h1>Attach Email To ID</h1>
+        <input type="email" id="inputID" class="form-control" placeholder="Your ID Key" required autofocus>
+        <br>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="javascript:setEmail()">Attach Email To ID</button>
+    </form>
+    <p>If you do not know what your ID Key is please go
+        <a href="/ManageCredentials">here</a>
+    </p>
+</body>
+
 </html>

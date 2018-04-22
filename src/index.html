@@ -1,58 +1,69 @@
 <!Doctype html>
 
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>Universal Identity Platform</title>
-        <script src="/javascript/jquery.min.js"></script>
-        <script src="/javascript/ImportSmartContract.js"></script>
-        <script src="/javascript/testmetamask.js"></script>
-        <!--<script src="/javascript/GetIdentitySmartContract.js"></script>-->
-        <script>
-                GetSmartContract("/abi/Identity.json", "Identity");
-                function GetCreator() {
-                    SmartContracts["Identity"].call.creator(function (err, result) {
-                        console.log(result)
-                    });
-                }
-                function what() {
-                    console.log("GetCreator();")
-                }
-        </script>
-        <style>
-            body{background-color: rgb(255, 255, 255);}
-            h1{height:1px;}
 
-            #border {
-                border: 2px black;
-                border-radius:50px;
-                border-width:200px;
-                /*border-right*/
-                /*background: black;*/          
-            }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Universal Identity Platform</title>
+    <script src="/javascript/jquery.min.js"></script>
+    <script src="/javascript/ImportSmartContract.js"></script>
+    <script src="/javascript/testmetamask.js"></script>
+    <!--<script src="/javascript/GetIdentitySmartContract.js"></script>-->
+    <script>
+        GetSmartContract("/abi/Identity.json", "Identity");
+        function GetCreator() {
+            SmartContracts["Identity"].call.creator(function (err, result) {
+                console.log(result)
+            });
+        }
+        function what() {
+            console.log("GetCreator();")
+        }
+    </script>
+    <style>
+        body {
+            background-color: rgb(255, 255, 255);
+        }
 
-        </style>
+        h1 {
+            height: 1px;
+        }
+
+        #border {
+            border: 2px black;
+            border-radius: 50px;
+            border-width: 200px;
+            /*border-right*/
+            /*background: black;*/
+        }
+    </style>
 
 
 
-    </head>                
-        <body class="text-center">
-        <div id="border">
+</head>
+
+<body class="text-center">
+    <div id="border">
         <form class="form-signin">
             <img class="mb-4">
-            <center><h1>Universal Identity Platform</h1></center>
+            <center>
+                <h1>Universal Identity Platform</h1>
+            </center>
             <br></br>
             <center>Are you an organisation of 3 or more?</center>
             <br></br>
-            <center>UIP is an algorithm designed to manage the identities of everyone on earth. Through a consensus of authorizing identities and putting them on a blockchain.</center>
+            <center>UIP is an algorithm designed to manage the identities of everyone on earth. Through a consensus of authorizing
+                identities and putting them on a blockchain.</center>
 
         </form>
     </div>
     <br></br>
     <a href="CreateID/index.html">Click gere to create an ID</a>
+    <br></br>
+    <a href="ManageCredentials/index.html">Manage Credentials</a>
     <br></br>
     <a href="AttachEmailToID/index.html">Attach Email To ID</a>
     <br></br>
@@ -62,6 +73,7 @@
     <br></br>
     <a href="VerifyUser/index.html">Verify User</a>
     <br></br>
-    <a href="ManageCredentials/index.html">Manage Credentials</a>
-    </body>
+
+</body>
+
 </html>
