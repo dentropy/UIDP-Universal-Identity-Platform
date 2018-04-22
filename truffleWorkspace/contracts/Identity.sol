@@ -47,7 +47,7 @@ contract Identity {
         //Curently I have nothing for it to do
         //This is a decentralized identity platform, so the creator has no authory anyways
     address public creator;
-    function Identity () public {
+    constructor() public {
         creator = msg.sender;
     }
 
@@ -87,7 +87,7 @@ contract Identity {
             identityToken[_issueIDTo][_userID][tokenID] = identityTokenStruct(_verifiedHASH, _encryptedIPFSLink, _validity, false);
         }
     }
-    function revokeIssuedToken (bytes32 _userID, uint16 _position, bytes32 _issueIDTo, uint16 _validity, bytes32 _userIDTo, bytes16 tokenID) public returns (bool) {
+    function revokeIssuedToken (bytes32 _userID, uint16 _position, bytes32 _issueIDTo, uint16 _validity, bytes16 tokenID) public returns (bool) {//bytes32 _userIDTo, 
         if(identities[_userID][_position].accountAddress == msg.sender && identities[_userID][_position].valid == true){
             identityToken[_issueIDTo][_userID][tokenID].validity = _validity;
         }
