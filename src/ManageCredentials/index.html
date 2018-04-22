@@ -19,6 +19,12 @@
                 function what() {
                     console.log("GetCreator();")
                 }
+                function displayIDs(){
+                    SmartContracts["Identity"].call.publicKeyToIdentity(web3.eth.accounts[0], 0, function (err, result) {
+                        console.log(result);
+                        document.body.innerHTML += '<p>Account at position 0 = '+result+'</p><br>';
+                    });
+                }
         </script>
         <title>Manage Credentials</title>
 
@@ -31,7 +37,7 @@
         <form class="create-id">
             <img class="mb-4">
             <br><br><br>
-            <button type="button" onclick="">Click here to see your credentials</button>
+            <button type="button" onclick="javascript:displayIDs()">Click here to see your credentials</button>
         </form>
     </body>
 </html>
