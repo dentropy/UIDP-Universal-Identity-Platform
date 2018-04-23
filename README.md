@@ -2,25 +2,10 @@
 Universal Identity Platform
 Using Solidity Ethereum and IPFS
 
-* Plan
-    * Paul
-        * Write functions that fetch data from the UI, check if it is good, and then put it on the blockchain
-            * Verify the data with the user
-            * Update existing data
-    * Austyn
-        * Load files into javascript object
-        * Hash the file
-        * Update CSS style sheets to include bootstrap template
-    * Tim
-        * PGP key generation
-        * Save as JSON
-    * Tate
-        * Learn jQuery
-        * Learn Bootstrap
-    * Everyone
-        * IPFS the things
+* Give People, Organization, and even smart contracts an identity with the UIP, Universal Identity Platform
+    * Our app is in production on the rinkeby testnet [here](http://blockapps.tech:3042/)
 * Dependencies
     * Nodejs
         * npm install -g truffle
-        * npm install -g truffle-hdwallet-provider
+        * npm install truffle-hdwallet-provider
         * npm install express
