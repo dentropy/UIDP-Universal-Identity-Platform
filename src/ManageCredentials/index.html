@@ -26,12 +26,13 @@
                 console.log(result);
                 document.body.innerHTML += '<p>Account at position 0 = ' + web3.toAscii(result) + '</p><br>';
                 SmartContracts["Identity"].call.email(result, function (err, result) {
-                    console.log("email at position 0 = " + result);
+                    var tmpEmail = result;
+                    console.log("email at position 0 = " + tmpEmail);
                     if (result = undefined) {
                         document.body.innerHTML += '<p>You can register an email <a href="/AttachEmailToID">here</a></p><br>';
                     }
                     else {
-                        document.body.innerHTML += '<p>Your registered email is ' + result + '</p><br>';
+                        document.body.innerHTML += '<p>Your registered email is ' + tmpEmail + '</p><br>';
                     }
                 });
             });
@@ -39,12 +40,13 @@
                 console.log(result);
                 document.body.innerHTML += '<p>Account at position 1 = ' + web3.toAscii(result) + '</p><br>';
                 SmartContracts["Identity"].call.email(result, function (err, result) {
-                    console.log("email at position 1 = " + result);
+                    var tmpEmail = result;
+                    console.log("email at position 1 = " + tmpEmail);
                     if (result = undefined) {
                         document.body.innerHTML += '<p>You can register an email <a href="/AttachEmailToID">here</a></p><br>';
                     }
                     else {
-                        document.body.innerHTML += '<p>Your registered email is ' + result + '</p><br>';
+                        document.body.innerHTML += '<p>Your registered email is ' + tmpEmail + '</p><br>';
                     }
                 });
             });
