@@ -15,13 +15,15 @@ Using Solidity Ethereum and IPFS
     * When someone has 7 keys they need 4 of them to reject one
 * Create multiple identitys with single public key
 * PGP for secure transmission of information accross the blockchain
+    * When an issuer gives out a credential a hash of a file is attached
+    * The issuer transmits the file to the users email
     * One can attach a pgp key and email to their identity for secure communication with other entities on the identity platform
     * One can even generate a pgp key on our site [here](http://blockapps.tech:3042/GeneratePGPPair/index.html)
+    * One can get thie pgp client [here](https://www.openpgp.org/software/)
 * Identity is useless unless you can do something with it
     * Any identity can issue non transfurable tokens to another identity as a credential
     * This token contains metadata of a hash of a file that the user of the identity can show as proof of their identity
     * To transfer the identity file from the issuer to the user pgp and IPFS is used
-        * 
 * Dependencies
     * Nodejs
         * npm install -g truffle
