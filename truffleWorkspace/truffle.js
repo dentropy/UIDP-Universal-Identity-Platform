@@ -17,8 +17,8 @@ module.exports = {
     */
 
     development: {
-      provider: new HDWalletProvider("conduct coil cactus atom need donate paddle fossil moon impact cargo text", "https://ropsten.infura.io/"),
-      network_id: '3',
+      provider: new HDWalletProvider("conduct coil cactus atom need donate paddle fossil moon impact cargo text", "https://rinkeby.infura.io/XcRinguGcmrko0g8NUSl"),
+      network_id: '*',
     },
   }
 };
