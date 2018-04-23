@@ -16,7 +16,7 @@ Using Solidity Ethereum and IPFS
 * Create multiple identitys with single public key
 * PGP for secure transmission of information accross the blockchain
     * One can attach a pgp key and email to their identity for secure communication with other entities on the identity platform
-    * One can even generate a pgp key on our site (here)[http://blockapps.tech:3042/GeneratePGPPair/index.html]
+    * One can even generate a pgp key on our site [here](http://blockapps.tech:3042/GeneratePGPPair/index.html)
 * Identity is useless unless you can do something with it
     * Any identity can issue non transfurable tokens to another identity as a credential
     * This token contains metadata of a hash of a file that the user of the identity can show as proof of their identity
