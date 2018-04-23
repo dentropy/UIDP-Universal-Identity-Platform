@@ -25,6 +25,16 @@ Using Solidity Ethereum and IPFS
     * One can attach a pgp key and email to their identity for secure communication with other entities on the identity platform
     * One can even generate a pgp key on our site [here](http://blockapps.tech:3042/GeneratePGPPair/index.html)
     * One can get thie pgp client [here](https://www.openpgp.org/software/)
+* Use cases:
+    * #talent-recognition
+    * #verifiable-orgs
+    * #gcentities-entitesgc
+    * #globaldrugsupplychain
+    * #farm-ferme
+    * #persec
+    * #public-education
+    * #notary-notaire
+    * #health-sante
 * Dependencies
     * Nodejs
         * npm install -g truffle
