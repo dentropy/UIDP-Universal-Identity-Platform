@@ -24,7 +24,7 @@
         function displayIDs() {
             SmartContracts["Identity"].call.publicKeyToIdentity(web3.eth.accounts[0], 0, function (err, result) {
                 console.log(result);
-                document.body.innerHTML += '<p>Account at position 0 = ' + result + '</p><br>';
+                document.body.innerHTML += '<p>Account at position 0 = ' + web3.toAscii(result) + '</p><br>';
                 SmartContracts["Identity"].call.email(result, function (err, result) {
                     console.log(result);
                     if (result = undefined) {
@@ -37,7 +37,7 @@
             });
             SmartContracts["Identity"].call.publicKeyToIdentity(web3.eth.accounts[0], 1, function (err, result) {
                 console.log(result);
-                document.body.innerHTML += '<p>Account at position 1 = ' + result + '</p><br>';
+                document.body.innerHTML += '<p>Account at position 1 = ' + web3.toAscii(result) + '</p><br>';
                 SmartContracts["Identity"].call.email(result, function (err, result) {
                     console.log(result);
                     if (result = undefined) {
