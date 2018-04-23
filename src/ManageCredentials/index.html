@@ -26,7 +26,7 @@
                 console.log(result);
                 document.body.innerHTML += '<p>Account at position 0 = ' + web3.toAscii(result) + '</p><br>';
                 SmartContracts["Identity"].call.email(result, function (err, result) {
-                    console.log(result);
+                    console.log("email at position 0 = " + result);
                     if (result = undefined) {
                         document.body.innerHTML += '<p>You can register an email <a href="/AttachEmailToID">here</a></p><br>';
                     }
@@ -39,7 +39,7 @@
                 console.log(result);
                 document.body.innerHTML += '<p>Account at position 1 = ' + web3.toAscii(result) + '</p><br>';
                 SmartContracts["Identity"].call.email(result, function (err, result) {
-                    console.log(result);
+                    console.log("email at position 1 = " + result);
                     if (result = undefined) {
                         document.body.innerHTML += '<p>You can register an email <a href="/AttachEmailToID">here</a></p><br>';
                     }
