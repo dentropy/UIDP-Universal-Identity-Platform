@@ -44,3 +44,8 @@ Using Solidity Ethereum and IPFS
         * npm install -g truffle
         * npm install truffle-hdwallet-provider
         * npm install express
+* Next steps
+    * List everything I need the UI to do
+    * Draw out new UI on a whiteboard or piece of paper
+
+    
