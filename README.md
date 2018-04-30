@@ -67,3 +67,6 @@ Using Solidity Ethereum and IPFS
         * The manage key pair part of smart contract is not fully functional
         * If someone revokes an address from their identity it is not removed from the lookup table, yet
         * I need to make sure there is a way to look up what addresses have access to what identitys
+* Code inspiration
+    * [SideNav Push Example](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_push)
+    * [Dynamic Tabs Example](https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_tabs_dynamic&stacked=h)
