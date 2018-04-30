@@ -40,3 +40,30 @@ Using Solidity Ethereum and IPFS
         * npm install -g truffle
         * npm install truffle-hdwallet-provider
         * npm install express
+* Next step is to build put all the seperate webpages for manageing ones identity into one
+    * Functions needed for UIP
+        * Create identity
+        * Switch between identities
+        * Manage account data
+            * View and set email and pgp
+        * Manage key pairs
+            * Remove key pair
+            * Add key pair
+        * Manage personal credential tokens
+            * Display tokens
+            * Accept them with a button
+            * Revoke them with a button
+        * Manage given credential tokens
+            * Display them all
+            * Offer to update them is possible
+            * Have search functionality
+    * Implement later
+        * Get files from IPFS
+            * Takes in hash returns file downloaded
+        * Unencrypt files pgp
+            * Explain how to do it or offer it in browser
+        * Set payment address, not implemented in smart contract yet
+    * Potential bugs
+        * The manage key pair part of smart contract is not fully functional
+        * If someone revokes an address from their identity it is not removed from the lookup table, yet
+        * I need to make sure there is a way to look up what addresses have access to what identitys
