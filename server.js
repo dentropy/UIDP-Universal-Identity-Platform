@@ -16,4 +16,4 @@ app.get('/', function (req, res) {
 });
 */
 //Host the app
-app.listen(3042, () => console.log('Example app listening on port 3042!'));
+app.listen(3333, () => console.log('Example app listening on port 3333!'));
