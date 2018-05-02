@@ -33,3 +33,21 @@
         * Ok these tokens can be reassigned is that a good idea?
             * It is an alright way of doing this, if I add events it will be alright
             * I can even have a special event for reassiened identity tokens
+* For the single UI page what is the thinking there
+    * Have a single web page for managing all the identitys from a single public key
+    * First problem is looking up what identitys are attached to the public key
+    * I can just look up the publicKeyToIdentity function in the smart contract
+        * Wait how do I remove the identity when it no longer has control over such an account
+        * I can just look up the identity's valid public keys
+        * This runs less code on the blockchain so it is ok
+    * After I have the identities I need a data structure for manage all their information
+        * Copy the same list as on the blockchain
+    * Each item in the list is an object
+        * This object can contraon all the useful information
+            * Management Keys
+            * Email
+            * PGPKey
+            * MyTokens
+            * GivenTokens
+            * Plus all the smart contract functions
+        * Then build UI by attaching html objects to divs with ID's using jquery
