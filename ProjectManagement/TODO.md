@@ -1,4 +1,4 @@
-# UIP-Universal-Identity-Platform
+# TODO
 Universal Identity Platform
 Using Solidity Ethereum and IPFS
 

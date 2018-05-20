@@ -1,3 +1,4 @@
+# Brainstorm 001
 * Every function of the UIP smart contract has to work
     * There may be a problem with how the contract currently authenticates and or communicates other contracts 
 * Functions include
