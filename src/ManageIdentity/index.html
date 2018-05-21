@@ -27,17 +27,20 @@
 <div id="main">
     <!-- Dynamic Tabs Code-->
     <div class="container">
-        <h2>Dynamic Tabs</h2>
+        <h2>Manage Your Identity</h2>
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Other Identitys</span>
         <ul class="nav nav-tabs">
             <li class="active">
                 <a data-toggle="tab" href="#home">Manage Identity Metadata</a>
             </li>
             <li>
-                <a data-toggle="tab" href="#menu2">Manage personal credential tokens</a>
+                <a data-toggle="tab" href="#menu1">Manage Personal Credential Tokens</a>
             </li>
             <li>
-                <a data-toggle="tab" href="#menu3">Manage given credential tokens</a>
+                <a data-toggle="tab" href="#menu2">Manage Given Credential Tokens</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#menu3">Give Identity Credential Token</a>
             </li>
         </ul>
 
@@ -45,18 +48,31 @@
             <div id="home" class="tab-pane fade in active">
                 <h3>Manage Identity Metadata</h3>
                 <p id="CurrentIDEMail">Your current email is set to : </p>
-                <p id="CurrentIDPGPKey">Your current public PGP Key is set to : </p><br>
-                <li>Update email : </li><br>
-                <input type="email" id="UpdateIdentityEmail"></input><button onclick="javascript:SetEmailID()">Submit</button><br><br>
+                <p id="CurrentIDPGPKey">Your current public PGP Key is set to : </p>
+                <br>
+                <li>Update email : </li>
+                <br>
+                <input type="email" id="UpdateIdentityEmail"></input>
+                <button onclick="javascript:SetEmailID()">Submit</button>
+                <br>
+                <br>
                 <li>Attach pgp key</li>
-                <input type="text" id="UpdateIdentityPGPKey"></input><button "javascript:SetPGPKeyID()">Submit</button><br><br>
+                <input type="text" id="UpdateIdentityPGPKey"></input>
+                <button "javascript:SetPGPKeyID()">Submit</button>
+                <br>
+                <br>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <h3>Manage personal credential tokens</h3>
+                <p>See what credential tokens are attached to your identity and the metadata they carry, also accept and reject
+                    tokens as necessary.</p>
             </div>
             <div id="menu2" class="tab-pane fade">
-                <h3>Manage personal credential tokens</h3>
-                <p>See what credential tokens are attached to your identity and the metadata they carry, also accept and reject tokens as necessary.</p>
+                <h3>Manage given credential tokens</h3>
+                <p>See what credential tokens have been given out from your identity.</p>
             </div>
             <div id="menu3" class="tab-pane fade">
-                <h3>Manage given credential tokens</h3>
+                <h3>Give out Credential Token</h3>
                 <p>Give credential tokens to other identities using your identity.</p>
             </div>
         </div>
