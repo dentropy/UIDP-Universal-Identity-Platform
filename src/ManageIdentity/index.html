@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <script src="/src/javascript/ImportSmartContract.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/ManageIdentity/style.css">
     <script src="/ManageIdentity/script.js"></script>
@@ -46,11 +47,12 @@
         <div class="tab-content">
             <div id="home" class="tab-pane fade in active">
                 <h3>Manage Identity Metadata</h3>
-                <li>Attach email</li><br>
-                <input type="email"></input><button>Submit</button><br><br>
+                <p id="CurrentIDEMail">Your current email is set to : </p>
+                <p id="CurrentIDPGPKey">Your current public PGP Key is set to : </p><br>
+                <li>Update email : </li><br>
+                <input type="email" id="UpdateIdentityEmail"></input><button onclick="javascript:SetEmailID()">Submit</button><br><br>
                 <li>Attach pgp key</li>
-                <input type="text"></input><button>Submit</button><br><br>
-                <li>Attach aditional metadata, not yet functional. Please submit an issue on github</li>
+                <input type="text" id="UpdateIdentityPGPKey"></input><button "javascript:SetPGPKeyID()">Submit</button><br><br>
             </div>
             <div id="menu1" class="tab-pane fade">
                 <h3>Manage key pairs</h3>
