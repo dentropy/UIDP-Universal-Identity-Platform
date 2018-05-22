@@ -30,7 +30,7 @@ $.getJSON("/abi/Identity.json", function (result) {
 
 
 var USERIDS = [];
-
+var CurrentIDSelected = 0;
 
 var tmpCountIDs = 0;
 
@@ -41,28 +41,48 @@ function GetUSERIDS() {
             tmpCountIDs += 1;
             GetUSERIDS();
         }
+        else {
+            AfterIdentitysObtained();
+        }
     })
 }
 
 
 //Attach email
 function SetEmailID() {
-    //UpdateIdentityEmail
+    var tmpEmail = document.getElementById("UpdateIdentityEmail").value;
+    document.getElementById("UpdateIdentityEmail").value = "";
+    IdentityContract.call.setEmail(USERIDS[CurrentIDSelected], 0, tmpEmail, function (err, result) {
+        console.log("email updated sucessfully");
+        console.log(result);
+    })
 }
 
 function GetEmailID() {
     //CurrentIDEMail
-    IdentityContract.call()
+    IdentityContract.call.email(USERIDS[CurrentIDSelected], function(err, result){
+        console.log(result);
+        document.getElementById("CurrentIDEMail").innerHTML = "Your current email is set to : " + result;
+    } )
 }
 
 
 //Update PGP Key
 function SetPGPKeyID() {
-    //UpdateIdentityPGPKey
+    var tmpPGPKey = document.getElementById("UpdateIdentityPGPKey").value;
+    document.getElementById("UpdateIdentityPGPKey").value = "";
+    IdentityContract.call.addRawPGPKey(USERIDS[CurrentIDSelected], 0, tmpPGPKey, function (err, result) {
+        console.log("PGPKey updated sucessfully");
+        console.log(result);
+    } )
 }
 
 function GetPGPKeyID() {
     //CurrentIDPGPKey
+    IdentityContract.call.PGPKey(USERIDS[CurrentIDSelected], function(err, result){
+        console.log(result);
+        document.getElementById("CurrentIDPGPKey").innerHTML = "Your current public PGP Key is set to : " + result;
+    })
 }
 
 
@@ -82,4 +102,10 @@ function CreateCredential() {
     //GiveCredentialTo
     //NameOfCredential
     //HashDataOfCredential
+}
+
+
+function AfterIdentitysObtained(){
+    GetEmailID();
+    GetPGPKeyID();  
 }
