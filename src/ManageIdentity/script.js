@@ -36,12 +36,11 @@ var tmpCountIDs = 0;
 
 function GetUSERIDS() {
     IdentityContract.call.publicKeyToIdentity(web3.eth.accounts[0], tmpCountIDs, function (err, result) {
-        if(result != "0x"){
+        if (result != "0x") {
             USERIDS.push(result);
             tmpCountIDs += 1;
             GetUSERIDS();
-        }
-        else {
+        } else {
             AfterIdentitysObtained();
         }
     })
@@ -60,10 +59,10 @@ function SetEmailID() {
 
 function GetEmailID() {
     //CurrentIDEMail
-    IdentityContract.call.email(USERIDS[CurrentIDSelected], function(err, result){
+    IdentityContract.call.email(USERIDS[CurrentIDSelected], function (err, result) {
         console.log(result);
         document.getElementById("CurrentIDEMail").innerHTML = "Your current email is set to : " + result;
-    } )
+    })
 }
 
 
@@ -74,12 +73,12 @@ function SetPGPKeyID() {
     IdentityContract.call.addRawPGPKey(USERIDS[CurrentIDSelected], 0, tmpPGPKey, function (err, result) {
         console.log("PGPKey updated sucessfully");
         console.log(result);
-    } )
+    })
 }
 
 function GetPGPKeyID() {
     //CurrentIDPGPKey
-    IdentityContract.call.PGPKey(USERIDS[CurrentIDSelected], function(err, result){
+    IdentityContract.call.PGPKey(USERIDS[CurrentIDSelected], function (err, result) {
         console.log(result);
         document.getElementById("CurrentIDPGPKey").innerHTML = "Your current public PGP Key is set to : " + result;
     })
@@ -88,24 +87,28 @@ function GetPGPKeyID() {
 
 //Get all credential tokens
 function GetCredentialTokens() {
-
-}
-
-
-//Give another identity a credential token
-function GiveCredentialToken() {
-
+    //Implement this later
 }
 
 
 function CreateCredential() {
-    //GiveCredentialTo
-    //NameOfCredential
-    //HashDataOfCredential
+    var GiveCredentialTo = document.getElementById("GiveCredentialTo").value;
+    var NameOfCredential = document.getElementById("NameOfCredential").value;
+    var HashDataOfCredential = document.getElementById("HashDataOfCredential").value;
+    var TokenIDNumber = document.getElementById("TokenIDNumber").value;
+    //function issueToken (bytes32 _userID, uint16 _position, bytes32 _issueIDTo, string _verifiedHASH, string _encryptedIPFSLink, uint16 _validity, bytes16 tokenID)
+    IdentityContract.call.issueToken(USERIDS[CurrentIDSelected], CurrentIDSelected, GiveCredentialTo, HashDataOfCredential,
+        "NONE, FUTURE FEATURE", 1, TokenIDNumber, function(err,result) {
+        if (err) {
+            console.log("IT DID NOT WORK")
+        } else {
+            console.log("IT WORKED")
+        }
+    })
 }
 
 
-function AfterIdentitysObtained(){
+function AfterIdentitysObtained() {
     GetEmailID();
-    GetPGPKeyID();  
+    GetPGPKeyID();
 }
