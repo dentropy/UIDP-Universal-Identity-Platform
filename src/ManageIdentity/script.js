@@ -56,3 +56,10 @@ function GetCredentialTokens(){
 function GiveCredentialToken(){
 
 }
+
+
+function CreateCredential(){
+    //GiveCredentialTo
+    //NameOfCredential
+    //HashDataOfCredential
+}
