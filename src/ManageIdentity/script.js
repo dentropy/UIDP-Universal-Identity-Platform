@@ -12,7 +12,6 @@ function closeNav() {
 
 
 //Create object for the Identity smart contract
-
 var IdentityContract = {};
 $.getJSON("/abi/Identity.json", function (result) {
     IdentityContract.abi = result;
@@ -25,18 +24,23 @@ $.getJSON("/abi/Identity.json", function (result) {
     console.log(IdentityContract.abi)
     IdentityContract.address = IdentityContract.abi.networks[tmp_the_correct_network].address;
     IdentityContract.call = web3.eth.contract(IdentityContract.abi.abi).at(IdentityContract.address);
+    GetUSERIDS();
 });
 //END creating Identity smart contract object
 
 
-var USER = web3.eth.coinbase;
 var USERIDS = [];
 
 
+var tmpCountIDs = 0;
+
 function GetUSERIDS() {
-    IdentityContract.call.publicKeyToIdentity(USER, 0, function (err, result) {
-        USERIDS.push(result);
-        console.log("USERIDS[0] = " + result);
+    IdentityContract.call.publicKeyToIdentity(web3.eth.accounts[0], tmpCountIDs, function (err, result) {
+        if(result != "0x"){
+            USERIDS.push(result);
+            tmpCountIDs += 1;
+            GetUSERIDS();
+        }
     })
 }
 
